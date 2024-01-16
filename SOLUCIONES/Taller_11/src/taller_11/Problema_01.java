@@ -15,20 +15,16 @@ public class Problema_01 {
         int matriz1[][] = new int [limF][limC];
         int matriz2[][] = new int [limF][limC];
         int matriz3[][] = new int [limF][limC];
-        int matriz4[][] = new int [limF][limC];
         generarMatriz(matriz1, limF, limC);
-        generarMatriz(matriz2, limF, limC);
         System.out.println("Matriz 1");
         System.out.println(devolverMatriz(matriz1, limF, limC));
-        System.out.println("Matriz 2");
+        paresMatriz(matriz1, matriz2, limF, limC);
+        System.out.println("Pares Matriz:");
         System.out.println(devolverMatriz(matriz2, limF, limC));
-        sumaMatrices(matriz1, matriz2, matriz3, limF, limC);
-        System.out.println("Suma de matrices");
+        imparesMatriz(matriz1, matriz3, limF, limC);
+        System.out.println("Impares Matriz:");
         System.out.println(devolverMatriz(matriz3, limF, limC));
-        restaMatrices(matriz1, matriz2, matriz4, limF, limC);
-        System.out.println("Resta de matrices");
-        System.out.println(devolverMatriz(matriz4, limF, limC));
-        promedioMatriz(matriz1, limF, limC);
+        System.out.println("El promedio de la matriz es: " + promedio(matriz1, limF, limC));
     }
     public static void generarMatriz(int matriz[][], int limF, int limC){
         for (int i = 0; i < limF; i++) {
@@ -42,34 +38,45 @@ public class Problema_01 {
         String cadena = "";
         for (int i = 0; i < limF; i++) {
             for (int j = 0; j < limC; j++) {
-                cadena += String.format("%d\t", matriz[i][j]); 
+                cadena += String.format("%d\t", matriz[ i][j]); 
             }
             cadena += "\n";
         }
         return cadena;
     }
-    public static void paresMatriz(int matriz1[][], int matriz2[][],int matriz3[][], int limF, int limC){
+    public static void paresMatriz(int matriz1[][], int matriz2[][], int limF, int limC){
            for (int i = 0; i < limF; i++) {
                for (int j = 0; j < limC; j++) {
-                   matriz3[i][j] = matriz1[i][j]+ matriz2[i][j];
+                   if ((matriz1[i][j]%2) == 0) {
+                       matriz2[i][j] = matriz1[i][j];
+                   }else{
+                       matriz2[i][j] = 0;
                }
+               }
+            }
         }
-    }
-        public static void imparesMatriz(int matriz1[][], int matriz2[][],int matriz4[][], int limF, int limC){
+        public static void imparesMatriz(int matriz1[][], int matriz3[][], int limF, int limC){
            for (int i = 0; i < limF; i++) {
                for (int j = 0; j < limC; j++) {
-                   matriz4[i][j] = matriz1[i][j] - matriz2[i][j];
+                   if ((matriz1[i][j]%2)!=0) {
+                       matriz3[i][j] = matriz1[i][j];
+                   }else{
+                       matriz3[i][j] = 0;
                }
+               }
+            }
         }
-    }
-        public static void promedioMatriz(int matriz1[][],int limF, int limC){
-           for (int i = 0; i < limF; i++) {
-               int promedio = 0;
-               promedio += matriz1[i][0]
-                   
-               
-        }           
-    }
+    
+        public static double promedio(int matriz1[][], int limF, int limC){
+            double promedio = 0;
+            for (int i = 0; i < limF; i++) {
+                for (int j = 0; j < limC; j++) {
+                    promedio += matriz1[i][j];
+                }
+            }
+        promedio = promedio/(limF*limC);
+        return promedio;
+        }
 }
 
     
